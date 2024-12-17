@@ -1,0 +1,28 @@
+Package: BacenAPI
+Type: Package
+Title: Tools for Accessing and Using Data from the Central Bank of Brazil
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Paulo", "Icaro",
+      email = "nao.fornecido@example.com",
+      role = "aut"
+    ),
+    person(
+      "Lissandro", "Sousa",
+      email = "lisandrosousa@gmail.com",
+      role = c("aut", "cre")
+    )
+  )
+Description: Este pacote adapta códigos para coleta e manipulação de dados
+    da API do Banco Central do Brasil. Código base desenvolvido por Paulo Icaro.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports: 
+    httr,
+    jsonlite,
+    dplyr
+
+
