@@ -28,4 +28,5 @@ dados <- bacen_api(url, httr = TRUE)
 # Exemplo usando o pacote httr2:
 dados <- bacen_api(url, httr = FALSE)
 
+
 }

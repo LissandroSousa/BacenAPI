@@ -22,7 +22,7 @@
 #'
 #'
 #' @export
-bacen_api <- function(url, httr = TRUE){
+bacen_api = function(url, httr = TRUE){
   message('Iniciando a conexao com a API do Bacen\n')
   flag = 0
 
@@ -30,11 +30,11 @@ bacen_api <- function(url, httr = TRUE){
   if(httr == TRUE){
 
     # -- API Connection -- #
-    api_connection = GET(url = url)
+    api_connection = httr::GET(url = url)
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
-      dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok')
+      svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok')
     }
     else if(api_connection$status_code != 200){
       while(api_connection$status_code != 200 & flag <= 3){
@@ -50,29 +50,30 @@ bacen_api <- function(url, httr = TRUE){
           Sys.sleep(10)
           message('Problemas na conexao. \nTentando acessar a API uma última vez ...\n')}
 
-        api_connection = GET(url = url)
+        api_connection = httr::GET(url = url)
       }
 
       ifelse(api_connection$status_code == 200,
-             dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok'),
-             dlg_message(message = 'Falha na conexao ! \nTente conectar com a API mais tarde.', type = 'ok')
+             svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok'),
+             svDialogs::dlg_message(message = 'Falha na conexao ! \nTente conectar com a API mais tarde.', type = 'ok')
       )
     }
 
     # --- Converting Data to a Readable Format --- #
     api_connection = rawToChar(api_connection$content)              # Raw to Json
-    api_connection = fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
+    api_connection = jsonlite::fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
   }
 
   # --- API Connection - Using httr2 --- #
   else{
 
     # -- API Connection -- #
-    api_connection = request(base_url = url) %>% req_perform()
+    api_connection = httr::request(base_url = url) %>% httr::req_perform()
+
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
-      dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type  = 'ok')
+      svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type  = 'ok')
     }
     else if(api_connection$status_code != 200){
       while(api_connection$status_code != 200 & flag <= 3){
@@ -86,20 +87,20 @@ bacen_api <- function(url, httr = TRUE){
           message('Problemas na conexao. \nTentando acessar a API novamente ...\n')}
         if(flag == 3){
           Sys.sleep(10)
-          message('Problemas na conexao. \nTentando acessar a API uma última vez ...\n')}
+          message('Problemas na conexao. ! \nTentando acessar a API uma última vez ...\n')}
 
-        api_connection = request(base_url = url) %>% req_perform()
+        api_connection = httr2::request(base_url = url) %>% httr2::req_perform()
       }
 
       ifelse(api_connection$status_code == 200,
-             dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok'),
-             dlg_message(message = 'Falha na conexao ! \nTente conectar com a API mais tarde.', type = 'ok')
+             svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok'),
+             svDialogs::dlg_message(message = 'Falha na conexao ! \nTente conectar com a API mais tarde.', type = 'ok')
       )
     }
 
     # --- Converting Data to a Readable Format --- #
     api_connection = rawToChar(api_connection$body)                 # Raw to JSon
-    api_connection = fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
+    api_connection = jsonlite::fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
   }
 
   # --- Output --- #
