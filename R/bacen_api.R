@@ -4,8 +4,6 @@
 #' utilizando os pacotes `httr` ou `httr2`, para obter dados em formato JSON e convertê-los
 #' em um formato legível como data frames.
 #'
-#' @import $(1:httr) $(2:GET)
-#'
 #' @param url Um string contendo o URL da API do BACEN para a série desejada.
 #' @param httr Um valor lógico. Se `TRUE`, a função utiliza o pacote `httr` para a conexão.
 #' Caso contrário, utiliza o pacote `httr2`. O valor padrão é `TRUE`.

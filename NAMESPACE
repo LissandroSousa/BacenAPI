@@ -2,4 +2,5 @@
 
 export(bacen_api)
 export(bacen_url)
-
+import("$(1:httr)")
+import("$(2:GET)")
