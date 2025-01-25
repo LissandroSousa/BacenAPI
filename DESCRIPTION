@@ -1,28 +1,33 @@
 Package: BacenAPI
-Type: Package
-Title: Tools for Accessing and Using Data from the Central Bank of Brazil
 Version: 0.1.0
+Title: Tools for Accessing and Using Data from the Central Bank of Brazil.
+Description: Provides tools to facilitate the access and processing of data 
+    from the Central Bank of Brazil (BACEN) API. The package allows users 
+    to retrieve economic and financial data, transforming them into usable 
+    tabular formats for further analysis.
+License: What license is it under?
+URL: https://github.com/LissandroSousa/BacenAPI
+BugReports: https://github.com/LissandroSousa/BacenAPI/issues
+Imports: 
+    httr,
+    httr2,
+    svDialogs,
+    jsonlite,
+    dplyr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+NeedsCompilation: No
+Packaged: ...
 Authors@R: c(
     person(
       "Paulo", "Icaro",
-      email = "nao.fornecido@example.com",
       role = "aut"
     ),
     person(
       "Lissandro", "Sousa",
-      email = "lisandrosousa@gmail.com",
-      role = c("aut", "cre")
+      email = "lisandrosousa54@gmail.com",
+      role = c("cre", "aut")
     )
   )
-Description: Este pacote adapta códigos para coleta e manipulação de dados
-    da API do Banco Central do Brasil. Código base desenvolvido por Paulo Icaro.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.3.2
-Imports: 
-    httr,
-    jsonlite,
-    dplyr
-
-
+Repository: ...

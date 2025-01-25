@@ -3,4 +3,3 @@
 export(bacen_api)
 export(bacen_form)
 export(bacen_url)
-import("$(2:GET)")
