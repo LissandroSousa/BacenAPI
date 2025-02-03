@@ -1,4 +1,4 @@
-#' Coleta de Dados da API do Banco Central.
+#' Coleta de Dados da API do Banco Central
 #'
 #' Esta função permite que o usuário insira informações para coletar séries temporais
 #' diretamente da API do Banco Central do Brasil (BACEN). Ela orienta o preenchimento de dados

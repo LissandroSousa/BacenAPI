@@ -2,7 +2,7 @@
 % Please edit documentation in R/bacen_url.R
 \name{bacen_url}
 \alias{bacen_url}
-\title{Criação de URLs para acesso à API do Banco Central.}
+\title{Criação de URLs para acesso à API do Banco Central}
 \usage{
 bacen_url(serie, data_inicio, data_termino)
 }

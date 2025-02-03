@@ -2,7 +2,7 @@
 % Please edit documentation in R/bacen_form.R
 \name{bacen_form}
 \alias{bacen_form}
-\title{Coleta de Dados da API do Banco Central.}
+\title{Coleta de Dados da API do Banco Central}
 \usage{
 bacen_form()
 }

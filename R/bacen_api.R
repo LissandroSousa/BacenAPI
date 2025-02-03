@@ -1,4 +1,4 @@
-#' Conexão com a API do Banco Central.
+#' Conexão com a API do Banco Central
 #'
 #' Esta função estabelece uma conexão com a API do Banco Central do Brasil (BACEN),
 #' utilizando os pacotes `httr` ou `httr2`, para obter dados em formato JSON e convertê-los

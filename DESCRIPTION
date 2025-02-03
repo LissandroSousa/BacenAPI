@@ -1,6 +1,6 @@
 Package: BacenAPI
 Version: 0.1.0
-Title: Tools for Accessing and Using Data from the Central Bank of Brazil.
+Title: Tools for Accessing and Using Data from the Central Bank of Brazil
 Description: Provides tools to facilitate the access and processing of data 
     from the Central Bank of Brazil (BACEN) API. The package allows users 
     to retrieve economic and financial data, transforming them into usable 

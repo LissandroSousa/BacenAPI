@@ -1,4 +1,4 @@
-#' Criação de URLs para acesso à API do Banco Central.
+#' Criação de URLs para acesso à API do Banco Central
 #'
 #' Esta função gera URLs que permitem acessar dados de séries temporais específicas
 #' fornecidas pela API do Banco Central do Brasil (BACEN).

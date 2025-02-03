@@ -2,7 +2,7 @@
 % Please edit documentation in R/bacen_api.R
 \name{bacen_api}
 \alias{bacen_api}
-\title{Conexão com a API do Banco Central.}
+\title{Conexão com a API do Banco Central}
 \usage{
 bacen_api(url, httr = TRUE)
 }
