@@ -5,7 +5,7 @@ Description: Provides tools to facilitate the access and processing of data
     from the Central Bank of Brazil (BACEN) API. The package allows users 
     to retrieve economic and financial data, transforming them into usable 
     tabular formats for further analysis.
-License: What license is it under?
+License: MIT + file LICENSE
 URL: https://github.com/LissandroSousa/BacenAPI
 BugReports: https://github.com/LissandroSousa/BacenAPI/issues
 Imports: 
@@ -18,7 +18,6 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 NeedsCompilation: No
-Packaged: ...
 Authors@R: c(
     person(
       "Paulo", "Icaro",
@@ -30,4 +29,3 @@ Authors@R: c(
       role = c("cre", "aut")
     )
   )
-Repository: ...

@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' # Exemplo usando o pacote httr:
-#' url <- "https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados?formato=json&dataInicial=01/01/2003&dataFinal=31/12/2023"
+#' url <- bacen_url(433, "01/01/2003", "31/12/2023")
 #' dados <- bacen_api(url, httr = TRUE)
 #'
 #' # Exemplo usando o pacote httr2:
@@ -29,6 +29,7 @@ bacen_api = function(url, httr = TRUE){
 
     # -- API Connection -- #
     api_connection = httr::GET(url = url)
+
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
@@ -57,16 +58,19 @@ bacen_api = function(url, httr = TRUE){
       )
     }
 
+
     # --- Converting Data to a Readable Format --- #
     api_connection = rawToChar(api_connection$content)              # Raw to Json
     api_connection = jsonlite::fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
   }
 
+
+
   # --- API Connection - Using httr2 --- #
   else{
 
     # -- API Connection -- #
-    api_connection = httr::request(base_url = url) %>% httr::req_perform()
+    api_connection = httr2::request(base_url = url) %>% httr2::req_perform()
 
 
     # --- Connection Flag --- #
@@ -96,10 +100,13 @@ bacen_api = function(url, httr = TRUE){
       )
     }
 
+
     # --- Converting Data to a Readable Format --- #
     api_connection = rawToChar(api_connection$body)                 # Raw to JSon
     api_connection = jsonlite::fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
   }
+
+
 
   # --- Output --- #
   return(api_connection)

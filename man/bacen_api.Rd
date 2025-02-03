@@ -22,7 +22,7 @@ em um formato legível como data frames.
 }
 \examples{
 # Exemplo usando o pacote httr:
-url <- "https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados?formato=json&dataInicial=01/01/2003&dataFinal=31/12/2023"
+url <- bacen_url(433, "01/01/2003", "31/12/2023")
 dados <- bacen_api(url, httr = TRUE)
 
 # Exemplo usando o pacote httr2:
