@@ -2,31 +2,31 @@
 % Please edit documentation in R/bacen_api.R
 \name{bacen_api}
 \alias{bacen_api}
-\title{Conexão com a API do Banco Central}
+\title{Connection to the Central Bank API}
 \usage{
 bacen_api(url, httr = TRUE)
 }
 \arguments{
-\item{url}{Um string contendo o URL da API do BACEN para a série desejada.}
+\item{url}{A string containing the BACEN API URL for the desired series.}
 
-\item{httr}{Um valor lógico. Se `TRUE`, a função utiliza o pacote `httr` para a conexão.
-Caso contrário, utiliza o pacote `httr2`. O valor padrão é `TRUE`.}
+\item{httr}{A logical value. If `TRUE`, the function uses the `httr` package for the connection.
+Otherwise, it uses the `httr2` package. The default value is `TRUE`.}
 }
 \value{
-Retorna os dados obtidos da API do BACEN.
+Returns the data retrieved from the BACEN API.
 }
 \description{
-Esta função estabelece uma conexão com a API do Banco Central do Brasil (BACEN),
-utilizando os pacotes `httr` ou `httr2`, para obter dados em formato JSON e convertê-los
-em um formato legível como data frames.
+This function establishes a connection with the Central Bank of Brazil (BACEN) API,
+using the `httr` or `httr2` packages to retrieve data in JSON format and convert
+it into a readable format such as data frames.
 }
 \examples{
-# Exemplo usando o pacote httr:
-url <- bacen_url(433, "01/01/2003", "31/12/2023")
-dados <- bacen_api(url, httr = TRUE)
+# Example using the `httr` package:
+url <- bacen_url(433, "01/01/2003", "31/12/2023") # in the format "dd/mm/yyyy"
+data <- bacen_api(url, httr = TRUE)
 
-# Exemplo usando o pacote httr2:
-dados <- bacen_api(url, httr = FALSE)
+# Example using the `httr2` package:
+data <- bacen_api(url, httr = FALSE)
 
 
 }

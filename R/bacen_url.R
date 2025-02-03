@@ -1,24 +1,24 @@
-#' Criação de URLs para acesso à API do Banco Central
+#' Creation of URLs to Access the Central Bank API
 #'
-#' Esta função gera URLs que permitem acessar dados de séries temporais específicas
-#' fornecidas pela API do Banco Central do Brasil (BACEN).
+#' This function generates URLs to access specific time series
+#' data provided by the Central Bank of Brazil (BACEN) API.
 #'
-#' @param serie Código(s) da(s) série(s) desejada(s). Deve ser um número ou vetor de números.
-#' @param data_inicio Data inicial do período de interesse, no formato "dd/mm/aaaa".
-#' @param data_termino Data final do período de interesse, no formato "dd/mm/aaaa".
+#' @param series Desired series code(s). Must be a number or a vector of numbers.
+#' @param start_date Start date of the period of interest, in the format "dd/mm/yyyy".
+#' @param end_date End date of the period of interest, in the format "dd/mm/yyyy".
 #'
-#' @return Retorna um vetor contendo os URLs criados para cada série fornecida.
+#' @return Returns a vector containing the generated URLs for each provided series.
 #'
 #' @examples
-#' # Gerar URL para a série 433 (IPCA) no período de 01/01/2003 a 31/12/2023.
+#' # Generate a URL for series 433 (IPCA) from 01/01/2003 to 31/12/2023.
 #' bacen_url(433, "01/01/2003", "31/12/2023")
 #'
 #' @export
-bacen_url <- function(serie, data_inicio, data_termino){
+bacen_url <- function(series, start_date, end_date){
   url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.'
 
   for(i in serie){
-    bacen_url = paste0(url, serie, '/dados?formato=json&dataInicial=', data_inicio, '&dataFinal=', data_termino)
+    bacen_url = paste0(url, series, '/dados?formato=json&dataInicial=', start_date, '&dataFinal=', end_date)
   }
 
   return(bacen_url)

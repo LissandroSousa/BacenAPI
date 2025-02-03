@@ -2,28 +2,29 @@
 % Please edit documentation in R/bacen_form.R
 \name{bacen_form}
 \alias{bacen_form}
-\title{Coleta de Dados da API do Banco Central}
+\title{Data Collection from the Central Bank API}
 \usage{
 bacen_form()
 }
 \value{
-Um data frame contendo as séries temporais coletadas, com colunas para datas
-e valores correspondentes às séries especificadas.
+A data frame containing the collected time series, with columns for dates
+and values corresponding to the specified series.
 }
 \description{
-Esta função permite que o usuário insira informações para coletar séries temporais
-diretamente da API do Banco Central do Brasil (BACEN). Ela orienta o preenchimento de dados
-como códigos de séries, nomes das séries e períodos desejados, retornando os dados formatados.
+This function allows the user to input information to collect time series
+directly from the Central Bank of Brazil (BACEN) API. It guides the user
+in providing data such as series codes, series names, and desired periods,
+returning the data in a formatted structure.
 }
 \examples{
-# Exemplo com múltiplas séries:
-# Suponha que o usuário forneça as seguintes informações durante a execução:
-# Códigos das séries: c('433', '13005', '24364', '25391')
-# Nomes atribuídos: c('ipca_br', 'ipca_for', 'ibc_br', 'ibcr_ce')
-# Período: '01/01/2003' a '01/12/2023'
+# Example with multiple series:
+# Assume the user provides the following information during execution:
+# Series codes: c('433', '13005', '24364', '25391')
+# Assigned names: c('ipca_br', 'ipca_for', 'ibc_br', 'ibcr_ce')
+# Period: '01/01/2003' a '01/12/2023', in the format "dd/mm/yyyy"
 
-# Após executar a função, os dados podem ser salvos ou utilizados:
-dados <- bacen_form()
-print(dados)
+# After running the function, the data can be saved or used:
+data  <- bacen_form()
+print(data)
 
 }

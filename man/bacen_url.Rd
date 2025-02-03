@@ -2,26 +2,26 @@
 % Please edit documentation in R/bacen_url.R
 \name{bacen_url}
 \alias{bacen_url}
-\title{Criação de URLs para acesso à API do Banco Central}
+\title{Creation of URLs to Access the Central Bank API}
 \usage{
-bacen_url(serie, data_inicio, data_termino)
+bacen_url(series, start_date, end_date)
 }
 \arguments{
-\item{serie}{Código(s) da(s) série(s) desejada(s). Deve ser um número ou vetor de números.}
+\item{series}{Desired series code(s). Must be a number or a vector of numbers.}
 
-\item{data_inicio}{Data inicial do período de interesse, no formato "dd/mm/aaaa".}
+\item{start_date}{Start date of the period of interest, in the format "dd/mm/yyyy".}
 
-\item{data_termino}{Data final do período de interesse, no formato "dd/mm/aaaa".}
+\item{end_date}{End date of the period of interest, in the format "dd/mm/yyyy".}
 }
 \value{
-Retorna um vetor contendo os URLs criados para cada série fornecida.
+Returns a vector containing the generated URLs for each provided series.
 }
 \description{
-Esta função gera URLs que permitem acessar dados de séries temporais específicas
-fornecidas pela API do Banco Central do Brasil (BACEN).
+This function generates URLs to access specific time series
+data provided by the Central Bank of Brazil (BACEN) API.
 }
 \examples{
-# Gerar URL para a série 433 (IPCA) no período de 01/01/2003 a 31/12/2023.
+# Generate a URL for series 433 (IPCA) from 01/01/2003 to 31/12/2023.
 bacen_url(433, "01/01/2003", "31/12/2023")
 
 }

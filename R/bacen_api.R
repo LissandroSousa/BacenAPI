@@ -1,27 +1,27 @@
-#' Conexão com a API do Banco Central
+#' Connection to the Central Bank API
 #'
-#' Esta função estabelece uma conexão com a API do Banco Central do Brasil (BACEN),
-#' utilizando os pacotes `httr` ou `httr2`, para obter dados em formato JSON e convertê-los
-#' em um formato legível como data frames.
+#' This function establishes a connection with the Central Bank of Brazil (BACEN) API,
+#' using the `httr` or `httr2` packages to retrieve data in JSON format and convert
+#' it into a readable format such as data frames.
 #'
-#' @param url Um string contendo o URL da API do BACEN para a série desejada.
-#' @param httr Um valor lógico. Se `TRUE`, a função utiliza o pacote `httr` para a conexão.
-#' Caso contrário, utiliza o pacote `httr2`. O valor padrão é `TRUE`.
+#' @param url A string containing the BACEN API URL for the desired series.
+#' @param httr A logical value. If `TRUE`, the function uses the `httr` package for the connection.
+#' Otherwise, it uses the `httr2` package. The default value is `TRUE`.
 #'
-#' @return Retorna os dados obtidos da API do BACEN.
+#' @return Returns the data retrieved from the BACEN API.
 #'
 #' @examples
-#' # Exemplo usando o pacote httr:
-#' url <- bacen_url(433, "01/01/2003", "31/12/2023")
-#' dados <- bacen_api(url, httr = TRUE)
+#' # Example using the `httr` package:
+#' url <- bacen_url(433, "01/01/2003", "31/12/2023") # in the format "dd/mm/yyyy"
+#' data <- bacen_api(url, httr = TRUE)
 #'
-#' # Exemplo usando o pacote httr2:
-#' dados <- bacen_api(url, httr = FALSE)
+#' # Example using the `httr2` package:
+#' data <- bacen_api(url, httr = FALSE)
 #'
 #'
 #' @export
 bacen_api = function(url, httr = TRUE){
-  message('Iniciando a conexao com a API do Bacen\n')
+  message('Starting connection to the Bacen API\n')
   flag = 0
 
   # --- API Connection - Using httr --- #
@@ -33,7 +33,7 @@ bacen_api = function(url, httr = TRUE){
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
-      svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok')
+      svDialogs::dlg_message(message = 'Connection successful ! \nData being collected ...\n', type = 'ok')
     }
     else if(api_connection$status_code != 200){
       while(api_connection$status_code != 200 & flag <= 3){
@@ -41,20 +41,20 @@ bacen_api = function(url, httr = TRUE){
 
         if(flag == 1){
           Sys.sleep(2)
-          message('Problemas na conexao. \nTentando acessar a API novamente ...\n')}
+          message('Connection issues. \nTrying to access the API again ...\n')}
         if(flag == 2){
           Sys.sleep(5)
-          message('Problemas na conexao. \nTentando acessar a API novamente ...\n')}
+          message('Connection issues. \nTrying to access the API again ...\n')}
         if(flag == 3){
           Sys.sleep(10)
-          message('Problemas na conexao. \nTentando acessar a API uma última vez ...\n')}
+          message('Connection issues. \nTrying to access the API one last time ...\n')}
 
         api_connection = httr::GET(url = url)
       }
 
       ifelse(api_connection$status_code == 200,
-             svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok'),
-             svDialogs::dlg_message(message = 'Falha na conexao ! \nTente conectar com a API mais tarde.', type = 'ok')
+             svDialogs::dlg_message(message = 'Connection successful ! \nData being collected ...\n', type = 'ok'),
+             svDialogs::dlg_message(message = 'Connection successful ! \nconnecting to the API later.', type = 'ok')
       )
     }
 
@@ -75,7 +75,7 @@ bacen_api = function(url, httr = TRUE){
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
-      svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type  = 'ok')
+      svDialogs::dlg_message(message = 'Connection successful ! \nData being collected ...\n', type  = 'ok')
     }
     else if(api_connection$status_code != 200){
       while(api_connection$status_code != 200 & flag <= 3){
@@ -83,20 +83,20 @@ bacen_api = function(url, httr = TRUE){
 
         if(flag == 1){
           Sys.sleep(2)
-          message('Problemas na conexao. \nTentando acessar a API novamente ...\n')}
+          message('Connection issues. \nTrying to access the API again ...\n')}
         if(flag == 2){
           Sys.sleep(5)
-          message('Problemas na conexao. \nTentando acessar a API novamente ...\n')}
+          message('Connection issues. \nTrying to access the API again ...\n')}
         if(flag == 3){
           Sys.sleep(10)
-          message('Problemas na conexao. ! \nTentando acessar a API uma última vez ...\n')}
+          message('Connection issues ! \nTrying to access the API one last time ...\n')}
 
         api_connection = httr2::request(base_url = url) %>% httr2::req_perform()
       }
 
       ifelse(api_connection$status_code == 200,
-             svDialogs::dlg_message(message = 'Conexao bem sucedida ! \nDados sendo coletados ...\n', type = 'ok'),
-             svDialogs::dlg_message(message = 'Falha na conexao ! \nTente conectar com a API mais tarde.', type = 'ok')
+             svDialogs::dlg_message(message = 'Connection successful! \nData being collected ...\n', type = 'ok'),
+             svDialogs::dlg_message(message = 'Connection failed! \nTry connecting to the API later.', type = 'ok')
       )
     }
 
