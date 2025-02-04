@@ -1,8 +1,8 @@
 #' @export
 .onLoad <- function(libname, pkgname) {
-  # Carrega o pacote desejado
+  # Load the desired package
   library(dplyr)
 
-  # Mensagem opcional para confirmar que o pacote foi carregado
-  packageStartupMessage("Pacote dplyr carregado automaticamente.")
+  # Optional message to confirm that the package was loaded
+  packageStartupMessage("Package dplyr loaded automatically..")
 }
