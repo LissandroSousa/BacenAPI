@@ -17,7 +17,7 @@
 bacen_url <- function(series, start_date, end_date){
   url = 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.'
 
-  for(i in serie){
+  for(i in series){
     bacen_url = paste0(url, series, '/dados?formato=json&dataInicial=', start_date, '&dataFinal=', end_date)
   }
 
