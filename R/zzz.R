@@ -4,5 +4,5 @@
   library(dplyr)
 
   # Optional message to confirm that the package was loaded
-  packageStartupMessage("Package dplyr loaded automatically..")
+  packageStartupMessage("Package dplyr loaded automatically.")
 }
