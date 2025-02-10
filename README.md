@@ -101,8 +101,6 @@ This example demonstrates the integration of all scripts to extract data for fou
 # Assume the user provides the following information during execution
 data  <- bacen_form()
 
-
-
 # Display results
 print(head(bacen_series))
 ```
