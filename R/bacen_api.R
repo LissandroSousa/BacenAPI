@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' # Example using the `httr` package:
-#' url <- bacen_url(433, "01/01/2003", "31/12/2023") # in the format "dd/mm/yyyy"
+#' url <- bacen_url(433, "01/01/2013", "31/12/2023") # in the format "dd/mm/yyyy"
 #' data <- bacen_api(url, httr = TRUE)
 #'
 #' # Example using the `httr2` package:
@@ -21,6 +21,7 @@
 #'
 #' @export
 bacen_api = function(url, httr = TRUE){
+  `%>%` <- magrittr::`%>%`
   message('Starting connection to the Bacen API\n')
   flag = 0
 
@@ -113,5 +114,3 @@ bacen_api = function(url, httr = TRUE){
   # --- Output --- #
   return(api_connection)
 }
-
-
