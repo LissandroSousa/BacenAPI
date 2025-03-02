@@ -27,7 +27,7 @@ bacen_form <- function() {
   per_init_bacen_series <- per_end_bacen_series <- ""
 
   # Info Box
-  svDialogs::msg_box(message = 'Dear user, from now on you will enter the necessary information to collect data from the Central Bank API. Please fill in the requested information accordingly.')
+  message("Dear user, from now on you will enter the necessary information to collect data from the Central Bank API.\nPlease fill in the requested information accordingly.")
 
   # Form to enter series
   repeat {
@@ -35,23 +35,24 @@ bacen_form <- function() {
     single_name_bacen_series <- readline(prompt = 'Enter the name you want to assign to this series: ')
     cod_bacen_series <- c(cod_bacen_series, single_cod_bacen_series)
     name_bacen_series <- c(name_bacen_series, single_name_bacen_series)
-    flag_question <- svDialogs::dlg_message(message = 'Do you want to enter another series?', type = 'yesno')
-    if (flag_question$res != "yes") break
+
+    flag_question <- readline(prompt = 'Do you want to enter another series? (yes/no): ')
+    if (tolower(flag_question) != "yes") break
   }
 
   # Entering the interval
-  svDialogs::msg_box(message = 'Now enter the initial and final period. Format: dd/mm/yyyy')
+  message("Now enter the initial and final period. Format: dd/mm/yyyy")
 
   repeat {
     per_init_bacen_series <- readline(prompt = 'Enter the initial period: ')
     if (nchar(per_init_bacen_series) == 10) break
-    svDialogs::msg_box(message = 'Invalid start date. Please enter again.')
+    message("Invalid start date. Please enter again.")
   }
 
   repeat {
     per_end_bacen_series <- readline(prompt = 'Enter the final period: ')
     if (nchar(per_end_bacen_series) == 10) break
-    svDialogs::msg_box(message = 'Invalid end date. Please enter again.')
+    message("Invalid end date. Please enter again.")
   }
 
   # Downloading the series

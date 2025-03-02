@@ -33,7 +33,7 @@ bacen_api = function(url, httr = TRUE){
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
-      svDialogs::dlg_message(message = 'Connection successful ! \nData being collected ...\n', type = 'ok')
+      message("Connection successful!\nData being collected...\n")
     }
     else if(api_connection$status_code != 200){
       while(api_connection$status_code != 200 & flag <= 3){
@@ -52,10 +52,11 @@ bacen_api = function(url, httr = TRUE){
         api_connection = httr::GET(url = url)
       }
 
-      ifelse(api_connection$status_code == 200,
-             svDialogs::dlg_message(message = 'Connection successful ! \nData being collected ...\n', type = 'ok'),
-             svDialogs::dlg_message(message = 'Connection successful ! \nconnecting to the API later.', type = 'ok')
-      )
+      if (api_connection$status_code == 200) {
+        message("Connection successful!\nData being collected...\n")
+      } else {
+        message("Connection failed!\nTry connecting to the API later.")
+      }
     }
 
 
@@ -75,7 +76,7 @@ bacen_api = function(url, httr = TRUE){
 
     # --- Connection Flag --- #
     if(api_connection$status_code == 200){
-      svDialogs::dlg_message(message = 'Connection successful ! \nData being collected ...\n', type  = 'ok')
+      message("Connection successful!\nData being collected...\n")
     }
     else if(api_connection$status_code != 200){
       while(api_connection$status_code != 200 & flag <= 3){
@@ -94,10 +95,11 @@ bacen_api = function(url, httr = TRUE){
         api_connection = httr2::request(base_url = url) %>% httr2::req_perform()
       }
 
-      ifelse(api_connection$status_code == 200,
-             svDialogs::dlg_message(message = 'Connection successful! \nData being collected ...\n', type = 'ok'),
-             svDialogs::dlg_message(message = 'Connection failed! \nTry connecting to the API later.', type = 'ok')
-      )
+      if (api_connection$status_code == 200) {
+        message("Connection successful!\nData being collected...\n")
+      } else {
+        message("Connection failed!\nTry connecting to the API later.")
+      }
     }
 
 
@@ -111,3 +113,5 @@ bacen_api = function(url, httr = TRUE){
   # --- Output --- #
   return(api_connection)
 }
+
+

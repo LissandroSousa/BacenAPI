@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2025 Lissandro Sousa
+Copyright (c) 2025 Paulo Ícaro, Lissandro Sousa and Francisco Gildemir
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
