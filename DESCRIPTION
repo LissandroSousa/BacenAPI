@@ -1,10 +1,11 @@
 Package: BacenAPI
 Version: 0.1.0
-Title: Tools for Accessing and Using Data from the Central Bank of Brazil
+Title: Data Collection from the Central Bank of Brazil
 Description: Provides tools to facilitate the access and processing of data 
     from the Central Bank of Brazil API. The package allows users 
     to retrieve economic and financial data, transforming them into usable 
-    tabular formats for further analysis.
+    tabular formats for further analysis. The data is obtained from the 
+    Central Bank of Brazil API: <https://api.bcb.gov.br/dados/serie/bcdata.sgs.{series_code}/dados?formato=json&dataInicial={start_date}&dataFinal={end_date}>.
 License: MIT + file LICENSE
 URL: https://github.com/LissandroSousa/BacenAPI
 BugReports: https://github.com/LissandroSousa/BacenAPI/issues

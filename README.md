@@ -5,7 +5,7 @@ This simple library allows users to access Brazil Central Bank (BACEN) data by i
 
 1. **Bacen_URL**: Generates the URL where the data is available.
 2. **Bacen_API**: Connects with the BACEN API, extracts the requested information, and converts it to a readable format.
-3. **Bacen_Form**: A user-friendly form that gathers necessary input for data extraction.
+3. **Bacen_series**: Retrieves data from multiple Central Bank series, given a vector of series IDs and corresponding names.
 
 This README provides a detailed guide on how to use each function.
 
@@ -71,49 +71,38 @@ print(head(data))
 
 ---
 
-## Bacen_Form
+## Bacen_series
 
 ### Description
-This script interacts with the user to gather information necessary for data extraction. The steps are as follows:
+This function retrieves data from multiple Central Bank series, given a vector of series IDs and corresponding names:
 
-1. Prompt the user to input the series code and a short name for each series.
-2. Ask whether additional series should be specified.
-3. Prompt for the start and end dates.
+### Arguments
 
-The information gathered is stored in variables representing series codes, names, and date intervals.
-
-### Note
-While this example directly sets variables for demonstration purposes, you should use `Bacen_Form` interactively in your R console.
-
----
-
-## Combining All Functions
+- `series`: A numeric vector containing the series IDs from Central Bank API.
+- `names`: A character vector containing the names corresponding to each series.
+- `start_date`: A string specifying the start date in `dd/mm/yyyy` format.
+- `end_date`: A string specifying the end date in `dd/mm/yyyy` format.
+- `httr`: A logical value indicating whether to use `httr` (`TRUE`) or `httr2` (`FALSE`). Default is TRUE.
 
 ### Example
-This example demonstrates the integration of all scripts to extract data for four variables:
-- Price Index and Economic Activity Index for Brazil and Ceará.
-- Codes: `433`, `24364`, `13005`, `25391`.
-- Names: `ipca_br`, `ipca_for`, `ibc_br`, `ibcr_ce`.
-- Date interval: `01/01/2003` to `31/12/2023`.
-
 ```r
-# Access API data with multiple series
-# Assume the user provides the following information during execution
-data  <- bacen_form()
+# Retrieve data for multiple series
+series <- c('433', '13005')
+names <- c('ipca_br', 'ipca_for')
+data <- bacen_series(series, names, "01/01/2013", "31/12/2023", httr = TRUE)
 
 # Display results
-print(head(bacen_series))
+print(head(data))
 ```
-
 **Sample Output:**
 ```
-         data ipca_br ipca_for ibc_br ibcr_ce
-1  01/01/2003    2.25     2.04 100.46  101.28
-2  01/02/2003    1.57     2.04 102.12  100.92
-3  01/03/2003    1.23     0.66 101.72  100.19
-4  01/04/2003    0.97     1.59 101.08  100.41
-5  01/05/2003    0.61     1.17  99.97  100.25
-6  01/06/2003   -0.15    -0.22 100.14  101.38
+         date ipca_br ipca_for
+1  01/01/2013    0.79     0.74
+2  01/02/2013    0.60     0.53
+3  01/03/2013    0.47     0.40
+4  01/04/2013    0.55     0.50
+5  01/05/2013    0.37     0.32
+6  01/06/2013    0.26     0.21
 ```
 
 ---
