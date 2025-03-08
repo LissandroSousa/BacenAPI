@@ -108,5 +108,6 @@ print(head(data))
 ---
 
 ## Footnotes
+- You can find all the data series available from the Central Bank of Brazil that can be accessed using this package at the following link: https://www3.bcb.gov.br/sgspub/localizarseries/localizarSeries.do?method=prepararTelaLocalizarSeries
 - Customize series codes and date ranges as per your needs.
 
