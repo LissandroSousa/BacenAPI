@@ -22,11 +22,9 @@ it into a readable format such as data frames.
 }
 \examples{
 # Example using the `httr` package:
-url <- bacen_url(433, "01/01/2013", "31/12/2023") # in the format "dd/mm/yyyy"
+url <- bacen_url(433, "01/01/2020", "31/12/2023") # in the format "dd/mm/yyyy"
 data <- bacen_api(url, httr = TRUE)
 
-# Example using the `httr2` package:
-data <- bacen_api(url, httr = FALSE)
 
 
 }

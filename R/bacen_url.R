@@ -11,7 +11,9 @@
 #'
 #' @examples
 #' # Generate a URL for series 433 (IPCA) from 01/01/2003 to 31/12/2023.
-#' bacen_url(433, "01/01/2013", "31/12/2023")
+#' bacen_url(433, "01/01/2020", "31/12/2023") # in the format "dd/mm/yyyy"
+#'
+#'
 #'
 #' @export
 bacen_url <- function(series, start_date, end_date){

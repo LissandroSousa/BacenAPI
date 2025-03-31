@@ -12,15 +12,13 @@
 #'
 #' @examples
 #' # Example using the `httr` package:
-#' url <- bacen_url(433, "01/01/2013", "31/12/2023") # in the format "dd/mm/yyyy"
+#' url <- bacen_url(433, "01/01/2020", "31/12/2023") # in the format "dd/mm/yyyy"
 #' data <- bacen_api(url, httr = TRUE)
 #'
-#' # Example using the `httr2` package:
-#' data <- bacen_api(url, httr = FALSE)
 #'
 #'
 #' @export
-bacen_api = function(url, httr = TRUE){
+bacen_api <- function(url, httr = TRUE){
   `%>%` <- magrittr::`%>%`
   message('Starting connection to the Bacen API\n')
   flag = 0
@@ -29,88 +27,71 @@ bacen_api = function(url, httr = TRUE){
   if(httr == TRUE){
 
     # -- API Connection -- #
-    api_connection = httr::GET(url = url)
-
+    api_connection = tryCatch(httr::GET(url = url),
+                              error = function(e) return(NULL))
 
     # --- Connection Flag --- #
-    if(api_connection$status_code == 200){
-      message("Connection successful!\nData being collected...\n")
-    }
-    else if(api_connection$status_code != 200){
-      while(api_connection$status_code != 200 & flag <= 3){
+    if (is.null(api_connection) || api_connection$status_code != 200) {
+      while(flag < 3 && (is.null(api_connection) || api_connection$status_code != 200)) {
         flag = flag + 1
+        Sys.sleep(flag * 2)  # Atraso progressivo (2s, 4s, 6s)
+        message(paste("Connection issues. Attempt", flag, "...\n"))
 
-        if(flag == 1){
-          Sys.sleep(2)
-          message('Connection issues. \nTrying to access the API again ...\n')}
-        if(flag == 2){
-          Sys.sleep(5)
-          message('Connection issues. \nTrying to access the API again ...\n')}
-        if(flag == 3){
-          Sys.sleep(10)
-          message('Connection issues. \nTrying to access the API one last time ...\n')}
-
-        api_connection = httr::GET(url = url)
+        api_connection = tryCatch(httr::GET(url = url),
+                                  error = function(e) return(NULL))
       }
 
-      if (api_connection$status_code == 200) {
-        message("Connection successful!\nData being collected...\n")
-      } else {
-        message("Connection failed!\nTry connecting to the API later.")
+      if (is.null(api_connection) || api_connection$status_code != 200) {
+        message("Connection failed! Try connecting to the API later.")
+        return(NULL)  # Retorna NULL para evitar erro fatal
       }
     }
 
+    message("Connection successful!\nData being collected...\n")
 
     # --- Converting Data to a Readable Format --- #
-    api_connection = rawToChar(api_connection$content)              # Raw to Json
-    api_connection = jsonlite::fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
+    api_connection = tryCatch({
+      rawToChar(api_connection$content) %>%
+        jsonlite::fromJSON(flatten = TRUE)
+    }, error = function(e) {
+      message("Error processing API response.")
+      return(NULL)
+    })
   }
-
-
 
   # --- API Connection - Using httr2 --- #
-  else{
+  else {
+    api_connection = tryCatch(httr2::request(base_url = url) %>% httr2::req_perform(),
+                              error = function(e) return(NULL))
 
-    # -- API Connection -- #
-    api_connection = httr2::request(base_url = url) %>% httr2::req_perform()
-
-
-    # --- Connection Flag --- #
-    if(api_connection$status_code == 200){
-      message("Connection successful!\nData being collected...\n")
-    }
-    else if(api_connection$status_code != 200){
-      while(api_connection$status_code != 200 & flag <= 3){
+    if (is.null(api_connection) || api_connection$status_code != 200) {
+      while(flag < 3 && (is.null(api_connection) || api_connection$status_code != 200)) {
         flag = flag + 1
+        Sys.sleep(flag * 2)
+        message(paste("Connection issues. Attempt", flag, "...\n"))
 
-        if(flag == 1){
-          Sys.sleep(2)
-          message('Connection issues. \nTrying to access the API again ...\n')}
-        if(flag == 2){
-          Sys.sleep(5)
-          message('Connection issues. \nTrying to access the API again ...\n')}
-        if(flag == 3){
-          Sys.sleep(10)
-          message('Connection issues ! \nTrying to access the API one last time ...\n')}
-
-        api_connection = httr2::request(base_url = url) %>% httr2::req_perform()
+        api_connection = tryCatch(httr2::request(base_url = url) %>% httr2::req_perform(),
+                                  error = function(e) return(NULL))
       }
 
-      if (api_connection$status_code == 200) {
-        message("Connection successful!\nData being collected...\n")
-      } else {
-        message("Connection failed!\nTry connecting to the API later.")
+      if (is.null(api_connection) || api_connection$status_code != 200) {
+        message("Connection failed! Try connecting to the API later.")
+        return(NULL)
       }
     }
 
+    message("Connection successful!\nData being collected...\n")
 
     # --- Converting Data to a Readable Format --- #
-    api_connection = rawToChar(api_connection$body)                 # Raw to JSon
-    api_connection = jsonlite::fromJSON(api_connection, flatten = TRUE)       # Json to Data Frame
+    api_connection = tryCatch({
+      rawToChar(api_connection$body) %>%
+        jsonlite::fromJSON(flatten = TRUE)
+    }, error = function(e) {
+      message("Error processing API response.")
+      return(NULL)
+    })
   }
 
-
-
-  # --- Output --- #
   return(api_connection)
 }
+

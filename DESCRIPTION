@@ -1,5 +1,5 @@
 Package: BacenAPI
-Version: 0.1.0
+Version: 0.2.0
 Title: Data Collection from the Central Bank of Brazil
 Description: Provides tools to facilitate the access and processing of data 
     from the Central Bank of Brazil API. The package allows users 
@@ -27,5 +27,11 @@ Authors@R: c(
       "Lissandro", "Sousa",
       email = "lisandrosousa54@gmail.com",
       role = c("cre", "aut")
+    ),
+    person(
+      "Francisco Gildemir", "Ferreira da Silva",
+       role = c("ths", "aut")
     )
   )
+Depends: 
+    R (>= 3.5)

@@ -26,6 +26,10 @@ This function retrieves data from multiple Central Bank series, given a vector o
 \examples{
 series <- c('433', '13005')
 names <- c('ipca_br', 'ipca_for')
-data <- bacen_series(series, names, "01/01/2013", "31/12/2023", httr = TRUE)
+data <- bacen_series(series, names,
+"01/01/2020", "31/12/2023",
+httr = TRUE) # in the format "dd/mm/yyyy"
+
+
 
 }
