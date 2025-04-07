@@ -6,6 +6,8 @@ This simple library allows users to access Brazil Central Bank (BACEN) data by i
 1. **Bacen_URL**: Generates the URL where the data is available.
 2. **Bacen_API**: Connects with the BACEN API, extracts the requested information, and converts it to a readable format.
 3. **Bacen_series**: Retrieves data from multiple Central Bank series, given a vector of series IDs and corresponding names.
+4. **bacen_search**: Searches for financial indicator series using keywords in Portuguese.
+5. **dataset**: object is a preloaded data frame containing metadata about the financial indicator series available from the Central Bank of Brazil (BACEN).
 
 This README provides a detailed guide on how to use each function.
 
@@ -103,6 +105,66 @@ print(head(data))
 4  01/04/2013    0.55     0.50
 5  01/05/2013    0.37     0.32
 6  01/06/2013    0.26     0.21
+```
+
+---
+
+## bacen_search
+
+### Description
+The `bacen_search()` function allows users to search for financial indicator series based on keywords. It is useful when the exact series code is unknown, but a topic or name is available.
+
+### Arguments
+- `keyword`: A character string (in Portuguese) containing the search term. Example: `"câmbio"`, `"juros"`, `"Bovespa"`, `"fortaleza"`.
+
+### Returns
+A `data.frame` with the following columns:
+- `Code`: The series number from BACEN.
+- `Full_Name`: The full name of the financial indicator (truncated to 50 characters for readability).
+- `Unit`: The unit of measurement of the indicator.
+- `Periodicity`: Frequency of the series (e.g., Monthly, Daily).
+- `Start_Date`: The initial date when the series began.
+
+If no matches are found, an informative message will be printed and the function returns `NULL`.
+
+### Example
+```r
+# Search for financial indicators related to "fortaleza"
+bacen_search("fortaleza")
+```
+**Sample Output:**
+```
+  Code                         Full_Name                   Unit Periodicity Start_Date
+1 1619 Índice de Preços ao Consumidor - Fortaleza           %     Monthly   01/01/1991
+2 4414 Índice Nacional de Preços ao Consumidor - Fortaleza  %     Monthly   01/01/1991
+```
+
+---
+
+## dataset
+
+### Description
+The `dataset` object is a preloaded data frame containing metadata about the financial indicator series available from the Central Bank of Brazil (BACEN). It is used internally by the `bacen_search()` function and can also be accessed directly by users for custom searches and exploration.
+
+### Format
+A `data.frame` with multiple rows and the following 5 columns:
+
+- `Code`: *(character)* The unique identifier for each financial indicator series.
+- `Full_Name`: *(character)* The full name or description of the financial indicator.
+- `Unit`: *(character)* The unit of measurement used for the data (e.g., %, R$, index value).
+- `Periodicity`: *(character)* The frequency with which data is collected (e.g., Daily, Monthly, Annual).
+- `Start_Date`: *(Date)* The date on which the series began.
+
+### Source
+Data collected and compiled from the **Central Bank of Brazil (BACEN)**.
+
+### Example
+```r
+# Load the dataset
+data("dataset")
+
+# Preview the first few rows
+head(dataset)
 ```
 
 ---
